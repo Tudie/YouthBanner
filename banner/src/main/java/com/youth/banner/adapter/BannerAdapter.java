@@ -1,5 +1,6 @@
 package com.youth.banner.adapter;
 
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -65,13 +66,18 @@ public abstract class BannerAdapter<T, VH extends RecyclerView.ViewHolder> exten
     @Override
     public final void onBindViewHolder(@NonNull VH holder, int position) {
         mViewHolder = holder;
-        int real = getRealPosition(position);
-        T data = mDatas.get(real);
+        final int real = getRealPosition(position);
+        final T data = mDatas.get(real);
         holder.itemView.setTag(R.id.banner_data_key, data);
         holder.itemView.setTag(R.id.banner_pos_key, real);
         onBindView(holder, mDatas.get(real), real, getRealCount());
         if (mOnBannerListener != null) {
-            holder.itemView.setOnClickListener(view -> mOnBannerListener.OnBannerClick(data, real));
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnBannerListener.OnBannerClick(data, real);
+                }
+            });
         }
     }
 
@@ -79,12 +85,15 @@ public abstract class BannerAdapter<T, VH extends RecyclerView.ViewHolder> exten
     @Override
     @SuppressWarnings("unchecked")
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        VH vh = onCreateHolder(parent, viewType);
-        vh.itemView.setOnClickListener(v -> {
-            if (mOnBannerListener != null) {
-                T data = (T) vh.itemView.getTag(R.id.banner_data_key);
-                int real = (int) vh.itemView.getTag(R.id.banner_pos_key);
-                mOnBannerListener.OnBannerClick(data, real);
+        final VH vh = onCreateHolder(parent, viewType);
+        vh.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnBannerListener != null) {
+                    T data = (T) vh.itemView.getTag(R.id.banner_data_key);
+                    int real = (int) vh.itemView.getTag(R.id.banner_pos_key);
+                    mOnBannerListener.OnBannerClick(data, real);
+                }
             }
         });
         return vh;
