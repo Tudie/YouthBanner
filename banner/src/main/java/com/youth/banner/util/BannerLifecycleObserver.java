@@ -10,4 +10,5 @@ public interface BannerLifecycleObserver extends LifecycleObserver {
     void onStart(LifecycleOwner owner);
 
     void onDestroy(LifecycleOwner owner);
+    
 }
