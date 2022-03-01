@@ -98,8 +98,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.style_image:
                 refresh.setEnabled(true);
                 banner.setAdapter(new ImageAdapter(DataBean.getTestData()));
-                banner.setIndicator(new CircleIndicator(this));
-                banner.setIndicatorGravity(IndicatorConfig.Direction.CENTER);
+//                banner.setIndicator(new CircleIndicator(this));
+//                banner.setIndicatorGravity(IndicatorConfig.Direction.CENTER);
                 break;
             case R.id.style_image_title:
                 refresh.setEnabled(true);
