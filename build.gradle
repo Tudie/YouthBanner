@@ -1,9 +1,9 @@
+
 buildscript {
     dependencies {
-        classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.1'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.3'
     }
 }
-
 plugins {
     id 'com.android.application' version '7.2.0' apply false
     id 'com.android.library' version '7.2.0' apply false
